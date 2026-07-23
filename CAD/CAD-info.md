@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚙️ KEPLER RC — SUBSISTEMA MECÁNICO
+# KEPLER RC — SUBSISTEMA MECÁNICO
 
 </div>
 
@@ -20,7 +20,7 @@ La característica de diseño más relevante es que **el robot está descompuest
 
 ```mermaid
 flowchart TB
-    ROBOT(["🤖 KEPLER RC<br/>ensamble general"])
+    ROBOT(["KEPLER RC<br/>ensamble general"])
 
     ROBOT --> M1
     ROBOT --> M2
@@ -75,7 +75,7 @@ flowchart TB
 
 ---
 
-## 🔩 Módulos
+## Módulos
 
 ### M1 · Chasis — metálico
 
@@ -129,7 +129,7 @@ flowchart TB
 
 ---
 
-## 🛒 Componentes comprados
+## Componentes 
 
 | Componente | Especificación | Cant. | Módulo |
 | :--- | :--- | :---: | :--- | 
