@@ -1,12 +1,12 @@
 <div align="center">
 
-#  Subsistema de electrónica — PCB "KEPLER RC VOL.1"
+#  KEPLER RC - PCB
 
 </div>
 
 ---
 
-## 1. Identificación del subsistema
+## Identificación del subsistema
 
 | Campo | Valor |
 |---|---|
@@ -20,13 +20,13 @@
 
 ---
 
-## 2. Descripción general
+## Descripción general
 
 La PCB Kepler es una **placa madre de dos capas** que integra en un solo módulo la alimentación, el control y la etapa de potencia de un robot minisumo. Está construida alrededor de un **DFRobot Beetle ESP32-C3** montado en zócalo (headers hembra) y **dos módulos TB6612FNG**, uno por motor, con sus dos canales internos puestos en paralelo para duplicar la capacidad de corriente.
 
 El robot opera por **radiocontrol** (receptor PWM de 3 canales) y reserva dos entradas para **sensores de línea QTR**, que permiten protección autónoma de borde del dohyo. Es decir, arquitectónicamente la placa es **RC con asistencia autónoma de borde**, no un minisumo autónomo completo (ver §9, hallazgo H-07).
 
-### 2.1 Diagrama de bloques
+### Diagrama de bloques
 
 ```
         LiPo 3S 450mAh 11.1V
@@ -58,7 +58,7 @@ El robot opera por **radiocontrol** (receptor PWM de 3 canales) y reserva dos en
 
 ---
 
-## 3. Etapa de potencia (alimentación)
+## Etapa de potencia (alimentación)
 
 | Ref. | Componente | Función |
 |---|---|---|
@@ -70,7 +70,7 @@ El robot opera por **radiocontrol** (receptor PWM de 3 canales) y reserva dos en
 | R1 + LED1 | 220 Ω + LED rojo 5 mm | Indicador de "power ON" del riel de 5 V |
 | SWESP | Header macho 1×2 + jumper | Puente que conecta el riel de 5 V al `VIN` del Beetle |
 
-### 3.1 Rieles del sistema
+### Rieles del sistema
 
 | Riel | Origen | Cargas |
 |---|---|---|
@@ -78,13 +78,13 @@ El robot opera por **radiocontrol** (receptor PWM de 3 canales) y reserva dos en
 | **5 V** | L7805 desde VM | `VIN` del Beetle ESP32-C3 (vía jumper SWESP), LED indicador |
 | **3.3 V** | LDO interno del Beetle | `VCC` y `STBY` de U2/U3, receptor RC, sensores QTR |
 
-### 3.2 Función del jumper SWESP
+### Función del jumper SWESP
 
 El puente permite **desconectar el riel de 5 V del `VIN` del Beetle**. Con el jumper retirado, el ESP32-C3 puede alimentarse y programarse solo por USB-C sin energizar la etapa de potencia, y sin riesgo de contraalimentar el L7805 desde el puerto USB. Es un detalle de diseño acertado y conviene documentarlo en la serigrafía de la siguiente revisión (p. ej. `USB ONLY / BATT`).
 
 ---
 
-## 4. Unidad de control
+## Unidad de control
 
 | Ref. | Componente |
 |---|---|
@@ -96,14 +96,14 @@ El módulo va montado sobre **headers hembra de 2.54 mm**, lo que permite reempl
 
 ---
 
-## 5. Etapa de potencia motriz
+## Etapa de potencia motriz
 
 | Ref. | Componente | Motor |
 |---|---|---|
 | U2 | Módulo TB6612FNG (Toshiba) | Motor A |
 | U3 | Módulo TB6612FNG (Toshiba) | Motor B |
 
-### 5.1 Topología: canales en paralelo
+### Topología: canales en paralelo
 
 Cada driver TB6612FNG contiene dos puentes H independientes (A y B). En este diseño **ambos canales de cada driver se conectan en paralelo para manejar un solo motor**:
 
@@ -120,13 +120,13 @@ Cada driver TB6612FNG contiene dos puentes H independientes (A y B). En este dis
 
 **Efecto:** la corriente continua disponible por motor pasa de 1.2 A a **≈ 2.4 A**, y el pico de ≈ 3.2 A a ≈ 6.4 A. Es la razón por la que se usan dos drivers en lugar de uno.
 
-### 5.2 Motores
+### Motores
 
 2× **JSUMO Core DC Motor**: 6 V nominal, 400 RPM, 120 mA en vacío, **3.2 A en stall**, 21 g c/u.
 
 ---
 
-## 6. Mapa de pines (GPIO)
+## Mapa de pines (GPIO)
 
 Tomado de la serigrafía de la placa y confirmado con el esquemático:
 
@@ -135,14 +135,14 @@ Tomado de la serigrafía de la placa y confirmado con el esquemático:
 | `PWMA` | **5** | Driver A (U2) | — | Va a `PWMA` y `PWMB` de U2 |
 | `AIN1` | **4** | Driver A (U2) | — | Va a `AIN1` y `BIN1` de U2 |
 | `AIN2` | **6** | Driver A (U2) | — | Va a `AIN2` y `BIN2` de U2 |
-| `PWMB` | **2** | Driver B (U3) | — | ⚠️ Pin de *strapping* |
-| `BIN1` | **8** | Driver B (U3) | — | ⚠️ Pin de *strapping* |
-| `BIN2` | **9** | Driver B (U3) | — | ⚠️ Pin de *strapping* / BOOT |
+| `PWMB` | **2** | Driver B (U3) | — | Va a `PWMA` y `PWMB` de U3 |
+| `BIN1` | **8** | Driver B (U3) | — | Va a `AIN1` y `BIN1` de U3 |
+| `BIN2` | **9** | Driver B (U3) | — | Va a `AIN2` y `BIN2` de U3 |
 | `CH1` (RECEPTOR) | **21** | Radiocontrol | `RECEPTOR` (HX PM2.54 3P) | UART0 TX por defecto |
-| `CH2` | **0** | Radiocontrol | `CH2` (JST-XH 3P) | ADC1_CH0 |
-| `CH3` | **7** | Radiocontrol | `CH3` (JST-XH 3P) | — |
-| `QTR1` | **1** | Sensor de línea | `QTR1` (JST-XH 3P) | ADC1_CH1 |
-| `QTR2` | **20** | Sensor de línea | `QTR2` (JST-XH 3P) | UART0 RX por defecto |
+| `CH2` | **0** | Radiocontrol | `CH2` (JST-XH 3P) | Pin extra |
+| `CH3` | **7** | Radiocontrol | `CH3` (JST-XH 3P) | Pin extra |
+| `QTR1` | **1** | Sensor de línea | `QTR1` (JST-XH 3P) |  Pin extra |
+| `QTR2` | **20** | Sensor de línea | `QTR2` (JST-XH 3P) |  Pin extra |
 
 **GPIO libres en el Beetle tras este diseño: solo IO3 e IO10.** La placa está prácticamente al límite de E/S disponibles (ver §9, H-07).
 
@@ -153,8 +153,8 @@ Tomado de la serigrafía de la placa y confirmado con el esquemático:
 | Designador | Tipo | Pines | Señales | Uso |
 |---|---|---|---|---|
 | `BORNERA1` | Bornera de tornillo, paso 5.08 mm | 2 | `12V`, `GND` | Entrada de batería |
-| `MOTORA` | JST-XH 2.54 mm | 2 | `MA1`, `MA2` | Motor izquierdo/derecho |
-| `MOTORB` | JST-XH 2.54 mm | 2 | `MB1`, `MB2` | Motor opuesto |
+| `MOTORA` | JST-XH 2.54 mm | 2 | `MA1`, `MA2` | Motor izquierdo |
+| `MOTORB` | JST-XH 2.54 mm | 2 | `MB1`, `MB2` | Motor derecho |
 | `RECEPTOR` | HX PM2.54-1×3P WC-Y | 3 | `GND`, `3.3V`, `CH1` | Canal 1 del receptor RC |
 | `CH2` | JST-XH 2.54 mm | 3 | `GND`, `3.3V`, `CH2` | Canal 2 RC |
 | `CH3` | JST-XH 2.54 mm | 3 | `GND`, `3.3V`, `CH3` | Canal 3 RC |
@@ -164,13 +164,11 @@ Tomado de la serigrafía de la placa y confirmado con el esquemático:
 | `SW1` | Switch deslizante | 3 | — | Encendido general |
 | `USB-C` | En el módulo Beetle | — | — | Programación / depuración |
 
-Los conectores de señal están alineados en el borde inferior de la placa en el orden: **MOTORA · QTR1 · CH2 · CH3 · QTR2 · MOTORB**.
-
 ---
 
-## 8. Lista de materiales (BOM)
+## Lista de materiales (BOM)
 
-### 8.1 Electrónica (subsistema PCB)
+### Electrónica (subsistema PCB)
 
 | # | Descripción | Cant. | Unit. (MXN) | Total (MXN) |
 |---|---|---|---|---|
