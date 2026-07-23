@@ -188,15 +188,4 @@ Los conectores de señal están alineados en el borde inferior de la placa en el
 | 16 | Regulador L7805 TO-220 | 1 | $9.00 | $9.00 |
 | | **Subtotal electrónica** | | | **$1,844.26** |
 
-### 8.2 Otros subsistemas (referencia)
-
-| # | Descripción | Cant. | Total (MXN) | Subsistema |
-|---|---|---|---|---|
-| 17 | JSUMO Core DC Motor 6 V 400 RPM | 2 | $550.76 | Chasis |
-| 18 | Placa de latón 7×5×0.75 cm | 1 | $80.00 | Chasis |
-| 19 | LiPo TATTU 3S 450 mAh 75C | 1 | $477.21 | Energía |
-| | **Subtotal** | | **$1,107.97** | |
-
-**Suma de todas las líneas: $2,952.23 MXN.** El BOM entregado indica un total de **$2,283.61 MXN** — hay una diferencia de $668.62 (ver §9, H-08).
-
 ---
