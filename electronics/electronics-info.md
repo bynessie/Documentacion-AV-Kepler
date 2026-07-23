@@ -80,7 +80,7 @@ El robot opera por **radiocontrol** (receptor PWM de 3 canales) y reserva dos en
 
 ### Función del jumper SWESP
 
-El puente permite **desconectar el riel de 5 V del `VIN` del Beetle**. Con el jumper retirado, el ESP32-C3 puede alimentarse y programarse solo por USB-C sin energizar la etapa de potencia, y sin riesgo de contraalimentar el L7805 desde el puerto USB. Es un detalle de diseño acertado y conviene documentarlo en la serigrafía de la siguiente revisión (p. ej. `USB ONLY / BATT`).
+El puente permite **desconectar el riel de 5 V del `VIN` del Beetle**. Con el jumper retirado, el ESP32-C3 puede alimentarse y programarse solo por USB-C sin energizar la etapa de potencia, y sin riesgo de contraalimentar el L7805 desde el puerto USB. 
 
 ---
 
