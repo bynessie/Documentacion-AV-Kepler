@@ -136,7 +136,7 @@ flowchart TB
 | Motor JSUMO Core DC | 6 V · 400 RPM · 120 mA vacío · **3.2 A stall** · 21 g | 2 | M3 |
 | Batería LiPo TATTU | 3S 450 mAh 75C · 11.1 V · 63 × 21 × 16.5 mm · XT30U-F | 1 | M4 | 
 | Placa metálica | Acero, espesor 1/4" | 1 | M1 | 
-| PCB Kepler RC Vol.1 | Ver [`electronics-info.md`](electronics/electronics-info.md) | 1 | M4 | 
+| PCB Kepler RC Vol.1 | Ver [`electronics-info.md`](electronics) | 1 | M4 | 
 | **Llantas** | Cubo + neumático de silicón, minisumo | 2 | M3 | 
 | **Navaja** | Katana Jsumo | 1 | M2 | 
 | **Filamento PLA** | 1.75 mm | ~150 g | M2/M3/M4/M5 | 
