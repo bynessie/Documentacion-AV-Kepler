@@ -1,4 +1,8 @@
-### Subsistema de electrónica — PCB "KEPLER RC VOL.1"
+<div align="center">
+
+#  Subsistema de electrónica — PCB "KEPLER RC VOL.1"
+
+</div>
 
 ---
 
