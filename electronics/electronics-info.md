@@ -24,7 +24,7 @@
 
 La PCB Kepler es una **placa madre de dos capas** que integra en un solo módulo la alimentación, el control y la etapa de potencia de un robot minisumo. Está construida alrededor de un **DFRobot Beetle ESP32-C3** montado en zócalo (headers hembra) y **dos módulos TB6612FNG**, uno por motor, con sus dos canales internos puestos en paralelo para duplicar la capacidad de corriente.
 
-El robot opera por **radiocontrol** (receptor PWM de 3 canales) y reserva dos entradas para **sensores de línea QTR**, que permiten protección autónoma de borde del dohyo. Es decir, arquitectónicamente la placa es **RC con asistencia autónoma de borde**, no un minisumo autónomo completo (ver §9, hallazgo H-07).
+El robot opera por **radiocontrol** (receptor PWM de 3 canales) y reserva dos entradas para **sensores de línea QTR**, que permiten protección autónoma de borde del dohyo. Es decir, arquitectónicamente la placa es **RC con asistencia autónoma de borde**, no un minisumo autónomo completo.
 
 ### Diagrama de bloques
 
