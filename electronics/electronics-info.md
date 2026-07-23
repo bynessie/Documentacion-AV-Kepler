@@ -1,5 +1,4 @@
-# Documentación Técnica — PCB "KEPLER RC VOL.1"
-### Subsistema de electrónica — Robot Minisumo RC / semi-autónomo
+### Subsistema de electrónica — PCB "KEPLER RC VOL.1"
 
 ---
 
@@ -13,11 +12,7 @@
 | **Organización** | Artemis Robotics |
 | **Diseñador** | Marian Zaes (@marian_zaes) |
 | **Herramienta EDA** | EasyEDA / LCEDA |
-| **Revisión de esquemático** | 1.0 |
-| **Fecha de esquemático** | 2026-06-17 |
-| **Hojas** | 1/1 |
-| **Capas PCB** | 2 (según render) |
-| **Acabado / máscara** | Máscara azul, serigrafía blanca |
+| **Capas PCB** | 2 |
 
 ---
 
